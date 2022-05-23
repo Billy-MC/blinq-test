@@ -54,7 +54,7 @@ const ModalContainer: React.FC<ModalContainerProps> = props => {
 	const { onClose } = props;
 	const [isCompleted, setIsCompleted] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	const [warning, setWarning] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const [data, setData] = useState<ISignUp>({
 		fullName: '',
 		email: '',
@@ -75,10 +75,10 @@ const ModalContainer: React.FC<ModalContainerProps> = props => {
 		setIsLoading(true);
 		signUp(data)
 			.then(() => {
-				setWarning('');
+				setErrorMessage('');
 				setIsCompleted(true);
 			})
-			.catch(error => setWarning(error.response.data.errorMessage))
+			.catch(error => setErrorMessage(error.response.data.errorMessage))
 			.finally(() => setIsLoading(false));
 	};
 
@@ -96,7 +96,7 @@ const ModalContainer: React.FC<ModalContainerProps> = props => {
 					isDisabled={isDisabled}
 					isLoading={isLoading}
 				/>
-				{warning && <Error>{warning}</Error>}
+				{errorMessage && <Error>{errorMessage}</Error>}
 			</Form>
 		</>
 	);
