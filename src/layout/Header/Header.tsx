@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { color } from '@/styles/variables';
 
 const StyledHeader = styled.header`
-	position: fixed;
+	position: sticky;
 	top: 0;
 	border-bottom: 1px solid ${color.borderColor};
 	padding-left: 150px;
